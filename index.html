@@ -568,7 +568,8 @@ footer p span {
 <nav>
   <div class="nav-logo-area">
     <div class="nav-logo-img-wrap" id="logo-wrap" title="Click to upload logo">
-      <div class="nav-logo-placeholder" id="logo-placeholder">Logo</div>
+<img id="logo-display" src="logo.png" style="width: 100%; height: 100%; object-fit: cover;">
+<div class="nav-logo-placeholder" id="logo-placeholder" style="display: none;">Logo</div>
       <input type="file" accept="image/*" onchange="loadLogo(event)"/>
     </div>
     <div class="nav-logo-text" onclick="showPage('home')" style="cursor:pointer;">
