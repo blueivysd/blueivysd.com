@@ -62,9 +62,20 @@ nav {
   transition: border-color 0.2s;
   cursor: pointer;
 }
-<div class="nav-logo-img-wrap">
-  <img src="logo.png" alt="Logo">
-</div>
+.nav-logo-img-wrap:hover { border-color: rgba(209,242,255,0.65); }
+.nav-logo-img-wrap input[type="file"] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer; z-index: 2;
+}
+.nav-logo-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.nav-logo-placeholder {
+  font-family: 'Cormorant Garamond', serif;
+  color: rgba(209,242,255,0.45);
+  font-size: 0.58rem;
+  text-align: center;
+  line-height: 1.3;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: 0.05em;
 }
 
 .nav-logo-text {
