@@ -63,9 +63,6 @@ nav {
   cursor: pointer;
 }
 .nav-logo-img-wrap:hover { border-color: rgba(209,242,255,0.65); }
-.nav-logo-img-wrap input[type="file"] {
-  position: absolute; inset: 0; opacity: 0; cursor: pointer; z-index: 2;
-}
 .nav-logo-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
 .nav-logo-placeholder {
   font-family: 'Cormorant Garamond', serif;
@@ -394,7 +391,6 @@ nav {
   transition: border-color 0.2s;
 }
 .tc-photo-wrap:hover { border-color: var(--navy); }
-.tc-photo-wrap input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; z-index: 2; }
 .tc-photo-wrap img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .tc-initials {
   font-family: 'Cormorant Garamond', serif;
@@ -573,10 +569,9 @@ footer p span {
 <!-- NAV -->
 <nav>
   <div class="nav-logo-area">
-    <div class="nav-logo-img-wrap" id="logo-wrap" title="Click to upload logo">
-<img id="logo-display" src="images/logo.png" style="width: 100%; height: 100%; object-fit: cover;">
-<div class="nav-logo-placeholder" id="logo-placeholder" style="display: none;">Logo</div>
-      <input type="file" accept="image/*" onchange="loadLogo(event)"/>
+    <div class="nav-logo-img-wrap" id="logo-wrap" title="Blue Ivy Speech & Debate">
+      <img id="logo-display" src="logo.png" style="width: 100%; height: 100%; object-fit: cover;">
+      <div class="nav-logo-placeholder" id="logo-placeholder" style="display: none;">Logo</div>
     </div>
     <div class="nav-logo-text" onclick="showPage('home')" style="cursor:pointer;">
       Blue Ivy <span>Speech &amp; Debate</span>
@@ -711,8 +706,7 @@ footer p span {
       <div class="team-card">
         <div class="tc-photo-wrap">
           <img src="images/lori_headshot.png" class="tc-photo" id="lori-photo">
-          <div class="tc-photo-hint"><span>Upload photo</span></div>
-          <input type="file" accept="image/*" onchange="loadTeamPhoto(event, 'lori-initials', this)"/>
+          <div class="tc-photo-hint"></div>
         </div>
         <div class="tc-name">Lori Li</div>
         <div class="tc-role">President, Blue Ivy Speech &amp; Debate</div>
@@ -722,8 +716,7 @@ footer p span {
       <div class="team-card">
         <div class="tc-photo-wrap">
           <img src="images/katherine_headshot.png" class="tc-photo" id="katherine-photo">
-          <div class="tc-photo-hint"><span>Upload photo</span></div>
-          <input type="file" accept="image/*" onchange="loadTeamPhoto(event, 'katherine-initials', this)"/>
+          <div class="tc-photo-hint"></div>
         </div>
         <div class="tc-name">Katherine Sheng</div>
         <div class="tc-role">Vice President, Blue Ivy Speech &amp; Debate</div>
@@ -810,40 +803,6 @@ function showPage(id) {
 }
 document.getElementById('nav-home').classList.add('active');
 
-// LOGO
-function loadLogo(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    const wrap = document.getElementById('logo-wrap');
-    document.getElementById('logo-placeholder').style.display = 'none';
-    let img = wrap.querySelector('img');
-    if (!img) { img = document.createElement('img'); wrap.insertBefore(img, wrap.querySelector('input')); }
-    img.src = e.target.result;
-  };
-  reader.readAsDataURL(file);
-}
-
-// HERO IMAGE
-function loadHeroImage(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    const banner = document.getElementById('hero-banner');
-    document.getElementById('hero-placeholder').style.display = 'none';
-    let img = banner.querySelector('img.hero-img');
-    if (!img) {
-      img = document.createElement('img');
-      img.className = 'hero-img';
-      banner.insertBefore(img, banner.firstChild);
-    }
-    img.src = e.target.result;
-  };
-  reader.readAsDataURL(file);
-}
-
 // GALLERIES
 function createSlot() {
   const slot = document.createElement('div');
@@ -888,22 +847,6 @@ function buildGallery(trackId, count) {
 buildGallery('track-2425', 6);
 buildGallery('track-2324', 6);
 buildGallery('track-2223', 6);
-
-// TEAM PHOTOS
-function loadTeamPhoto(event, initialsId, input) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    const wrap = input.closest('.tc-photo-wrap');
-    const initials = document.getElementById(initialsId);
-    if (initials) initials.style.display = 'none';
-    let img = wrap.querySelector('img');
-    if (!img) { img = document.createElement('img'); wrap.insertBefore(img, wrap.querySelector('input')); }
-    img.src = e.target.result;
-  };
-  reader.readAsDataURL(file);
-}
 
 // FORM
 function handleSubmit() {
