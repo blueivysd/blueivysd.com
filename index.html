@@ -30,6 +30,22 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--off-white); color: var(--navy); overflow-x: hidden; }
+.form-button {
+  display: inline-block;
+  background-color: var(--navy);
+  color: var(--white) !important;
+  padding: 10px 24px;
+  text-decoration: none !important;
+  border-radius: 50px;       /* Gives it clean, rounded pill edges */
+  font-weight: bold;
+  margin-top: 15px;
+  text-align: center;
+  transition: opacity 0.2s ease;
+}
+
+.form-button:hover {
+  opacity: 0.9;              /* Darkens slightly on hover */
+}
 
 /* PAGES */
 .page { display: none; min-height: 100vh; padding-top: 72px; }
@@ -638,16 +654,20 @@ footer p span {
     <div class="upcoming-grid">
       <div class="upcoming-card">
         <div class="uc-tag">Free Virtual Workshops</div>
-        <div class="uc-title">Summer Workshops 2025</div>
+        <div class="uc-title">Summer Workshops 2026</div>
         <p class="uc-dates">
-          Stay tuned for our workshops, which will be hosted on:<br/><br/>
+          Our workshops will be hosted on:
           <strong>June 13, June 20, and June 27</strong><br/><br/>
-          All workshops are hosted digitally and completely free to attend.
+          All workshops are hosted digitally and completely free to attend.</strong><br/><br/>
+        Sign up today!</strong><br/><br/>
+                  Sign up today!</strong><br/><br/>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScZcaqvj6xvPmZpMHIokEiJ1j_DFsz_PlT9ap0iQpe6YxiRyw/viewform?usp=dialog" target="_blank" class="form-button">Register Now</a>
+        </p>
         </p>
       </div>
       <div class="upcoming-card">
         <div class="uc-tag">Debate Intensive</div>
-        <div class="uc-title">Summer Debate Camp 2025</div>
+        <div class="uc-title">Summer Debate Camp 2026</div>
         <p class="uc-dates">
           Our debate camp will be held in <strong>mid-late August</strong>.<br/><br/>
           More details on exact dates and registration will be announced soon. Stay tuned!
