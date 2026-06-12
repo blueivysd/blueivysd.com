@@ -388,27 +388,15 @@ nav {
   border: 2.5px solid var(--mist);
   background: linear-gradient(135deg, var(--navy), var(--slate));
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 1.3rem; position: relative; cursor: pointer;
+  margin-bottom: 1.3rem; position: relative;
   transition: border-color 0.2s;
 }
 .tc-photo-wrap:hover { border-color: var(--navy); }
-.tc-photo-wrap input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; z-index: 2; }
 .tc-photo-wrap img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 .tc-initials {
   font-family: 'Cormorant Garamond', serif;
   color: var(--ice); font-size: 1.55rem; font-weight: 600;
   pointer-events: none; user-select: none;
-}
-.tc-photo-hint {
-  position: absolute; inset: 0;
-  background: rgba(33,64,122,0.52);
-  display: flex; align-items: center; justify-content: center;
-  opacity: 0; transition: opacity 0.2s; pointer-events: none; border-radius: 50%;
-}
-.tc-photo-wrap:hover .tc-photo-hint { opacity: 1; }
-.tc-photo-hint span {
-  color: var(--ice); font-size: 0.58rem;
-  letter-spacing: 0.06em; text-transform: uppercase; font-weight: 600;
 }
 
 .tc-name {
@@ -627,7 +615,7 @@ footer p span {
     <div class="section-rule"></div>
 
     <p class="programs-body">
-      Since 2022, Blue Ivy Speech and Debate has empowered students through summer camps and free virtual workshops. Led by experienced debaters, our programs range from week-long debate intensives to[...]
+      Since 2022, Blue Ivy Speech and Debate has empowered students through summer camps and free virtual workshops. Led by experienced debaters, our programs range from week-long debate intensiv[...]
     </p>
 
     <div class="upcoming-label">Stay Tuned for Upcoming Events</div>
@@ -708,10 +696,8 @@ footer p span {
 
     <div class="team-grid">
       <div class="team-card">
-        <div class="tc-photo-wrap" title="Click to upload photo">
+        <div class="tc-photo-wrap">
           <img src="images/lori_headshot.png" class="tc-photo" id="lori-photo">
-          <div class="tc-photo-hint"><span>Upload Photo</span></div>
-          <input type="file" accept="image/*" onchange="loadTeamPhoto(event,'lori-initials',this)"/>
         </div>
         <div class="tc-name">Lori Li</div>
         <div class="tc-role">President, Blue Ivy Speech &amp; Debate</div>
@@ -719,14 +705,21 @@ footer p span {
       </div>
 
       <div class="team-card">
-        <div class="tc-photo-wrap" title="Click to upload photo">
-          <img src="images/katherine_headshot.png" class="tc-photo" id="lori-photo">
-          <div class="tc-photo-hint"><span>Upload Photo</span></div>
-          <input type="file" accept="image/*" onchange="loadTeamPhoto(event,'katherine-initials',this)"/>
+        <div class="tc-photo-wrap">
+          <img src="images/katherine_headshot.png" class="tc-photo" id="katherine-photo">
         </div>
         <div class="tc-name">Katherine Sheng</div>
         <div class="tc-role">Vice President, Blue Ivy Speech &amp; Debate</div>
         <p class="tc-bio">With three years of competitive experience, Katherine has a strong foundation in both Public Forum debate and Speech. She most notably reached the Octofinals at Lakeland[...]
+      </div>
+
+      <div class="team-card">
+        <div class="tc-photo-wrap">
+          <span class="tc-initials" id="new-member-initials">NM</span>
+        </div>
+        <div class="tc-name">New Team Member</div>
+        <div class="tc-role">Executive Team Member</div>
+        <p class="tc-bio">Coming soon. We are excited to welcome a new member to our executive team who shares our passion for speech and debate and will help us expand our reach to more students[...]
       </div>
     </div>
   </div>
@@ -872,22 +865,6 @@ function buildGallery(trackId, count) {
 buildGallery('track-2425', 6);
 buildGallery('track-2324', 6);
 buildGallery('track-2223', 6);
-
-// TEAM PHOTOS
-function loadTeamPhoto(event, initialsId, input) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    const wrap = input.closest('.tc-photo-wrap');
-    const initials = document.getElementById(initialsId);
-    if (initials) initials.style.display = 'none';
-    let img = wrap.querySelector('img');
-    if (!img) { img = document.createElement('img'); wrap.insertBefore(img, wrap.querySelector('input')); }
-    img.src = e.target.result;
-  };
-  reader.readAsDataURL(file);
-}
 
 // FORM
 function handleSubmit() {
